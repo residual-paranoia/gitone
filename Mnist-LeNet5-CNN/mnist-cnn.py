@@ -74,7 +74,7 @@ def model():
         conv2_re = tf.nn.relu(tf.nn.conv2d(maxpool1_re, conv2_w, strides=[1, 1, 1, 1], padding="VALID") + conv2_b)
         # 10*10*16->5*5*16
         maxpool2_re = tf.nn.max_pool(conv2_re, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="VALID")
-   # 全连接层[None, 5, 5, 16] - -->[None, 5 * 5 * 16] * [5 * 5* 16, 120] + [10] = [None, 120]
+   # 全连接层[None, 5, 5, 16] - -->[None, 5 * 5 * 16] * [5 * 5* 16, 120] + [120] = [None, 120]
     with tf.variable_scope("FC1"):
         fc_w1 = get_weight([5*5*16,120])
         fc_b1 = get_weight([120])
